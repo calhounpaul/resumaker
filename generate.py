@@ -107,23 +107,31 @@ def create_resume(data, timestamp=None):
     # Core Competencies
     story.append(Paragraph("Core Competencies", styles['SectionTitle']))
 
-    # Split skills into two columns using a table
-    half = len(skills) // 2
-    skills_column_1 = [Paragraph(f"• {skill}", styles['LeftAlignTwoColList']) for skill in skills[:half]]
-    skills_column_2 = [Paragraph(f"• {skill}", styles['LeftAlignTwoColList']) for skill in skills[half:]]
+    # Build pairs of skills
+    skills_pairs = []
+    skills = list(set(skills))
+    for i in range(0, len(skills), 2):
+        skill1 = skills[i]
+        if i + 1 < len(skills):
+            skill2 = skills[i + 1]
+        else:
+            skill2 = ''
+        skills_pairs.append((skill1, skill2))
 
-    data_table = list(zip(skills_column_1, skills_column_2))
+    # Build and append each pair of skills as a separate two-cell table
+    for skill1, skill2 in skills_pairs:
+        row = [Paragraph(f"• {skill1}", styles['LeftAlignTwoColList']),
+            Paragraph(f"• {skill2}", styles['LeftAlignTwoColList']) if skill2 else Paragraph('', styles['LeftAlignTwoColList'])]
+        table = Table([row], colWidths=[225, 225])
+        table.setStyle(TableStyle([
+            ('VALIGN', (0, 0), (-1, -1), 'TOP'),
+            ('LEFTPADDING', (0, 0), (-1, -1), 0),
+            ('RIGHTPADDING', (0, 0), (-1, -1), 0),
+            ('TOPPADDING', (0, 0), (-1, -1), 0),
+            ('BOTTOMPADDING', (0, 0), (-1, -1), 0),
+        ]))
+        story.append(table)
 
-    table = Table(data_table, colWidths=[225, 225])
-    table.setStyle(TableStyle([
-        ('VALIGN', (0, 0), (-1, -1), 'TOP'),
-        ('LEFTPADDING', (0, 0), (-1, -1), 0),
-        ('RIGHTPADDING', (0, 0), (-1, -1), 0),
-        ('TOPPADDING', (0, 0), (-1, -1), 0),
-        ('BOTTOMPADDING', (0, 0), (-1, -1), 0),
-    ]))
-
-    story.append(table)
     story.append(Spacer(1, SECTION_GAP))
 
     # Professional Experience
