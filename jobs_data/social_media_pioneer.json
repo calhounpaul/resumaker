@@ -1,21 +1,21 @@
 {
-    "category": "Social Media Pioneer",
-    "emphasis": "Social media pioneer and global ambassador for online community and friendship, known for establishing foundational digital community-building practices.",
-    "skills": [
-      "Community Engagement",
-      "Digital Content Strategy",
-      "Influencer Collaboration",
-      "Online Safety Advocacy",
+  "category": "Social Media Pioneer",
+  "emphasis": "Co-founder of Myspace, instrumental in the development of early social media platforms, and currently a passionate photographer traveling the world to capture diverse landscapes and cultures.",
+  "skills": [
+      "Social Media Strategy",
+      "Product Development",
+      "Digital Marketing",
+      "Photography",
       "Public Speaking"
-    ],
-    "experience_keys": [
+  ],
+  "experience_keys": [
       "myspace",
-      "friend_to_all"
-    ],
-    "certifications": [],
-    "project_keys": [
-      "space_music",
-      "first_friend_feature",
-      "friend_reunion_tour"
-    ]
+      "photography"
+  ],
+  "certifications": [],
+  "project_keys": [
+      "myspace_launch",
+      "myspace_music",
+      "photography_portfolio"
+  ]
 }

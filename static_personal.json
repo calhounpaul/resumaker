@@ -1,10 +1,17 @@
 {
     "personal_info": {
       "name": "Tom Anderson",
-      "email": "tom.anderson@myspacelegacy.com"
+      "email": "tom.anderson@myspacetom.com"
     },
     "base_locations": [
       "Los Angeles, CA 90001"
+    ],
+    "references": [
+      {
+        "name": "Paul Calhoun",
+        "relationship": "The Resumaker",
+        "contact_info": "github.com/calhounpaul"
+      }
     ]
   }
   

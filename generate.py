@@ -8,7 +8,6 @@ from reportlab.lib.enums import TA_JUSTIFY, TA_LEFT, TA_CENTER
 from reportlab.lib import colors
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
-from reportlab.platypus import KeepTogether
 
 # Global spacing factors (adjust these to control spacing)
 LINE_SPACING_FACTOR = 1.4
@@ -19,9 +18,9 @@ NAME_GAP = 2  # Gap between name and location
 LOCATION_GAP = 0  # Gap between location and first section title
 
 # Global page margin variables
-RIGHT_MARGIN = 72
-LEFT_MARGIN = 72
-TOP_MARGIN = 72
+RIGHT_MARGIN = 64
+LEFT_MARGIN = 64
+TOP_MARGIN = 64
 BOTTOM_MARGIN = 32
 
 # Font configuration
@@ -80,12 +79,16 @@ def create_resume(data, timestamp=None):
     # Define custom styles
     base_style = ParagraphStyle('Base', fontName=FONT_NAME, fontSize=11, leading=11 * LINE_SPACING_FACTOR)
     styles.add(ParagraphStyle('Justify', parent=base_style, alignment=TA_JUSTIFY))
-    styles.add(ParagraphStyle('LeftAlign', parent=base_style, alignment=TA_LEFT))
+    styles.add(ParagraphStyle('LeftAlign', parent=base_style, fontSize=11, alignment=TA_LEFT))
+    styles.add(ParagraphStyle('LeftAlignTwoColList', parent=base_style, fontSize=10, alignment=TA_LEFT, leading=11 * 1.2))
     styles.add(ParagraphStyle('Center', parent=base_style, alignment=TA_CENTER))
     styles.add(ParagraphStyle('Name', parent=base_style, alignment=TA_CENTER, fontSize=16, leading=16 * LINE_SPACING_FACTOR))
-    styles.add(ParagraphStyle('JobTitle', parent=base_style, fontSize=12, leading=12 * LINE_SPACING_FACTOR, spaceAfter=4))
-    styles.add(ParagraphStyle('JobDetails', parent=base_style, fontSize=10, leading=10 * LINE_SPACING_FACTOR, spaceAfter=2))
-    styles.add(ParagraphStyle('SectionTitle', parent=styles['Heading2'], spaceAfter=SUBSECTION_GAP, keepWithNext=True))  # Keep section title with next content
+    styles.add(ParagraphStyle('JobTitle', parent=base_style, fontSize=12, leading=12 * LINE_SPACING_FACTOR, spaceAfter=4, keepWithNext=True))
+    styles.add(ParagraphStyle('JobDetails', parent=base_style, fontSize=10, leading=10 * LINE_SPACING_FACTOR, spaceAfter=2, keepWithNext=True))
+    styles.add(ParagraphStyle('SectionTitle', parent=styles['Heading2'], spaceAfter=SUBSECTION_GAP, keepWithNext=True))
+    styles.add(ParagraphStyle('ProjectHeader', parent=styles['LeftAlign'], keepWithNext=True))
+    styles.add(ParagraphStyle('EducationTitle', parent=styles['LeftAlign'], keepWithNext=True))
+    styles.add(ParagraphStyle('ReferenceName', parent=styles['LeftAlign'], keepWithNext=True))
 
     story = []
 
@@ -101,13 +104,13 @@ def create_resume(data, timestamp=None):
     story.append(Paragraph(emphasis, styles['Justify']))
     story.append(Spacer(1, SECTION_GAP))
 
-    # Key Skills - Core Competencies in two columns using a table
+    # Core Competencies
     story.append(Paragraph("Core Competencies", styles['SectionTitle']))
 
     # Split skills into two columns using a table
     half = len(skills) // 2
-    skills_column_1 = [Paragraph(f"• {skill}", styles['LeftAlign']) for skill in skills[:half]]
-    skills_column_2 = [Paragraph(f"• {skill}", styles['LeftAlign']) for skill in skills[half:]]
+    skills_column_1 = [Paragraph(f"• {skill}", styles['LeftAlignTwoColList']) for skill in skills[:half]]
+    skills_column_2 = [Paragraph(f"• {skill}", styles['LeftAlignTwoColList']) for skill in skills[half:]]
 
     data_table = list(zip(skills_column_1, skills_column_2))
 
@@ -124,31 +127,33 @@ def create_resume(data, timestamp=None):
     story.append(Spacer(1, SECTION_GAP))
 
     # Professional Experience
-    story.append(Paragraph("Professional Experience", styles['SectionTitle']))
-    for job in content:
-        # Keep the job title and details together
-        job_header = [
-            Paragraph(f"<b>{job['title']}</b>", styles['JobTitle']),
-            Paragraph(f"{job['date']} | {job['location']}", styles['JobDetails'])
-        ]
-        story.append(KeepTogether(job_header))
+    if content:
+        story.append(Paragraph("Professional Experience", styles['SectionTitle']))
 
-        # Add duties without KeepTogether
-        for duty in job['duties']:
-            indented_duty = f"{'&nbsp;' * INDENTATION_LEVEL}• {duty}"
-            story.append(Paragraph(indented_duty, styles['LeftAlign']))
+        for job in content:
+            # Job header
+            story.append(Paragraph(f"<b>{job['title']}</b>", styles['JobTitle']))
+            story.append(Paragraph(f"{job['date']} | {job['location']}", styles['JobDetails']))
 
-        story.append(Spacer(1, SUBSECTION_GAP))  # Reduced spacer between jobs
+            # Duties
+            for duty in job['duties']:
+                indented_duty = f"{'&nbsp;' * INDENTATION_LEVEL}• {duty}"
+                story.append(Paragraph(indented_duty, styles['LeftAlign']))
+
+            story.append(Spacer(1, SUBSECTION_GAP))
+    else:
+        # If no content, just add the section title
+        story.append(Paragraph("Professional Experience", styles['SectionTitle']))
 
     # Projects
     if projects:
         story.append(Paragraph("Selected Projects", styles['SectionTitle']))
-        for project in projects:
-            # Keep project title and date together
-            project_header = [Paragraph(f"<b>{project['name']}</b> ({project['date']})", styles['LeftAlign'])]
-            story.append(KeepTogether(project_header))
 
-            # Add description and link separately
+        for project in projects:
+            # Project Header
+            story.append(Paragraph(f"<b>{project['name']}</b> ({project['date']})", styles['ProjectHeader']))
+
+            # Description and link
             story.append(Paragraph(project['description'], styles['LeftAlign']))
             if 'link' in project:
                 story.append(Paragraph(f"Link: {project['link']}", styles['LeftAlign']))
@@ -164,27 +169,22 @@ def create_resume(data, timestamp=None):
     # Education
     if education:
         story.append(Paragraph("Education", styles['SectionTitle']))
+
         for edu in education:
-            education_entry = [
-                Paragraph(f"<b>{edu['degree']}</b>", styles['LeftAlign']),
-                Paragraph(f"{edu['institution']}, {edu['location']} ({edu['date']})", styles['LeftAlign'])
-            ]
+            # Education entry
+            story.append(Paragraph(f"<b>{edu['degree']}</b>", styles['EducationTitle']))
+            story.append(Paragraph(f"{edu['institution']}, {edu['location']} ({edu['date']})", styles['LeftAlign']))
             if 'details' in edu:
                 for detail in edu['details']:
-                    education_entry.append(Paragraph(detail, styles['LeftAlign']))
-            story.append(KeepTogether(education_entry))
+                    story.append(Paragraph(detail, styles['LeftAlign']))
             story.append(Spacer(1, SUBSECTION_GAP))
-        story.append(Spacer(1, SECTION_GAP))
 
     # Professional References
     story.append(Paragraph("Professional References", styles['SectionTitle']))
     if references:
         for ref in references:
-            ref_entry = [
-                Paragraph(f"<b>{ref['name']}</b>", styles['LeftAlign']),
-                Paragraph(f"{ref['relationship']}, {ref['contact_info']}", styles['LeftAlign'])
-            ]
-            story.append(KeepTogether(ref_entry))
+            story.append(Paragraph(f"<b>{ref['name']}</b>", styles['ReferenceName']))
+            story.append(Paragraph(f"{ref['relationship']}, {ref['contact_info']}", styles['LeftAlign']))
             story.append(Spacer(1, SUBSECTION_GAP))
     else:
         story.append(Paragraph("Available upon request", styles['Normal']))
@@ -230,14 +230,14 @@ if __name__ == "__main__":
                 "name": personal_data["personal_info"]["name"],
                 "email": personal_data["personal_info"]["email"],
                 "education": common_data.get("education", []),
-                "references": common_data.get("references", [])
+                "references": personal_data.get("references", [])  # References now from static_personal.json
             }
 
             # Combine skills
             job_data["skills"] = job_input.get("skills", []) + common_data.get("common_skills", [])
 
             # Combine certifications
-            job_data["certifications"] = job_input.get("certifications", []) + common_data.get("common_certifications", [])
+            job_data["certifications"] = list(set(job_input.get("certifications", []) + common_data.get("common_certifications", [])))
 
             # Get content from experience_keys
             job_data["content"] = []
