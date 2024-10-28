@@ -1,0 +1,74 @@
+{
+    "common_experience": {
+      "myspace": {
+        "company": "MySpace",
+        "location": "Beverly Hills, CA",
+        "title": "President & First Friend",
+        "date": "2003 - 2009",
+        "duties": [
+          "Led MySpace to become the most popular social media platform of its era.",
+          "Promoted user engagement by connecting personally with every user as their 'first friend.'",
+          "Developed initiatives that encouraged music discovery and social interaction among users.",
+          "Oversaw site redesigns and technical upgrades to keep pace with rising user traffic.",
+          "Collaborated with artists and creators to make MySpace a hub for content sharing and fan interaction."
+        ]
+      },
+      "friend_to_all": {
+        "company": "Global Friendship Initiative",
+        "location": "Los Angeles, CA",
+        "title": "Ambassador of Friendship",
+        "date": "2010 - Present",
+        "duties": [
+          "Traveling the world to promote online and offline friendships among diverse communities.",
+          "Hosted talks and panels on the evolution of social media and its impact on society.",
+          "Worked with non-profit organizations to create virtual community centers for youth interaction.",
+          "Advocating for online safety and digital responsibility in social media use.",
+          "Encouraging positive, supportive interactions across various social media platforms."
+        ]
+      }
+    },
+    "common_certifications": [
+      "Social Media Pioneer Award (2015)"
+    ],
+    "common_skills": [
+      "Social Media Strategy",
+      "Digital Marketing",
+      "User Engagement",
+      "Community Building",
+      "Brand Development",
+      "Public Speaking"
+    ],
+    "all_projects": {
+      "space_music": {
+        "name": "MySpace Music Discovery",
+        "date": "2007",
+        "description": "Launched a music discovery feature allowing users to discover and share new music.",
+        "link": "myspace.com/discover/music"
+      },
+      "first_friend_feature": {
+        "name": "Your First Friend Initiative",
+        "date": "2004",
+        "description": "Designed a welcome experience that made every new user feel connected and supported.",
+        "link": "myspace.com/tom"
+      },
+      "friend_reunion_tour": {
+        "name": "Friendship Reunion Tour",
+        "date": "2016",
+        "description": "Traveled globally to reconnect with former MySpace users and share nostalgic memories.",
+        "link": "tomanderson.com/reunion"
+      }
+    },
+    "education": [
+      {
+        "degree": "Bachelor of Arts in Digital Media",
+        "institution": "University of California, Berkeley",
+        "location": "Berkeley, CA",
+        "date": "Graduated 2002",
+        "details": [
+          "Minor in Sociology"
+        ]
+      }
+    ],
+    "references": []
+  }
+  
