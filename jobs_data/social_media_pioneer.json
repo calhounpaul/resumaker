@@ -1,21 +1,21 @@
 {
-  "category": "Social Media Pioneer",
-  "emphasis": "Co-founder of Myspace, instrumental in the development of early social media platforms, and currently a passionate photographer traveling the world to capture diverse landscapes and cultures.",
-  "skills": [
-      "Social Media Strategy",
-      "Product Development",
-      "Digital Marketing",
-      "Photography",
-      "Public Speaking"
-  ],
-  "experience_keys": [
+    "category": "Social Media Pioneer",
+    "emphasis": "Co-founder of Myspace, instrumental in the development of early social media platforms, and currently a passionate photographer traveling the world to capture diverse landscapes and cultures.",
+    "skill_categories": [
+      "Social Media",
+      "Creative Arts",
+      "Communication"
+    ],
+    "skills": [],
+    "experience_keys": [
       "myspace",
       "photography"
-  ],
-  "certifications": [],
-  "project_keys": [
+    ],
+    "certifications": [],
+    "project_keys": [
       "myspace_launch",
       "myspace_music",
       "photography_portfolio"
-  ]
-}
+    ]
+  }
+  

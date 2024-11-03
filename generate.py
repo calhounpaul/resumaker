@@ -241,8 +241,15 @@ if __name__ == "__main__":
                 "references": personal_data.get("references", [])  # References now from static_personal.json
             }
 
-            # Combine skills
-            job_data["skills"] = job_input.get("skills", []) + common_data.get("common_skills", [])
+            # Combine skills using categories
+            skills_list = []
+            category_keys = job_input.get('skill_categories', [])
+            for key in category_keys:
+                skills_from_category = common_data['common_skills'].get(key, [])
+                skills_list.extend(skills_from_category)
+            job_specific_skills = job_input.get('skills', [])
+            skills_list.extend(job_specific_skills)
+            job_data["skills"] = list(set(skills_list))
 
             # Combine certifications
             job_data["certifications"] = list(set(job_input.get("certifications", []) + common_data.get("common_certifications", [])))
@@ -267,3 +274,7 @@ if __name__ == "__main__":
             total_resumes += 1
 
     print(f"Generated {total_resumes} resumes in the 'outputs/{timestamp}' directory.")
+    if os.path.exists('latest_output'):
+        os.system('rm -rf latest_output')
+    os.system(f'cp -r outputs/{timestamp} latest_output')
+    print("Copied the generated resumes to 'latest_output' folder.")

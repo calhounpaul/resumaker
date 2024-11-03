@@ -1,120 +1,153 @@
 {
-  "common_experience": {
+    "common_experience": {
       "xdrive": {
-          "company": "XDrive Technologies",
-          "location": "Los Angeles, CA",
-          "title": "Product Tester and Copywriter",
-          "date": "2000 - 2001",
-          "duties": [
-              "Tested and provided feedback on digital storage products.",
-              "Created copy for marketing materials and product documentation."
-          ]
+        "company": "XDrive Technologies",
+        "location": "Los Angeles, CA",
+        "title": "Product Tester and Copywriter",
+        "date": "2000 - 2001",
+        "duties": [
+          "Tested and provided feedback on digital storage products.",
+          "Created copy for marketing materials and product documentation."
+        ]
       },
       "responsebase": {
-          "company": "ResponseBase",
-          "location": "Los Angeles, CA",
-          "title": "Co-founder",
-          "date": "2001 - 2002",
-          "duties": [
-              "Co-founded a direct marketing company specializing in email marketing.",
-              "Managed business development and client relations."
-          ]
+        "company": "ResponseBase",
+        "location": "Los Angeles, CA",
+        "title": "Co-founder",
+        "date": "2001 - 2002",
+        "duties": [
+          "Co-founded a direct marketing company specializing in email marketing.",
+          "Managed business development and client relations."
+        ]
       },
       "euniverse": {
-          "company": "eUniverse (later Intermix Media)",
-          "location": "Los Angeles, CA",
-          "title": "Product Manager",
-          "date": "2002 - 2003",
-          "duties": [
-              "Developed online marketing strategies and social media concepts.",
-              "Collaborated with team to create innovative web-based products."
-          ]
+        "company": "eUniverse (later Intermix Media)",
+        "location": "Los Angeles, CA",
+        "title": "Product Manager",
+        "date": "2002 - 2003",
+        "duties": [
+          "Developed online marketing strategies and social media concepts.",
+          "Collaborated with team to create innovative web-based products."
+        ]
       },
       "myspace": {
-          "company": "Myspace",
-          "location": "Los Angeles, CA",
-          "title": "Co-founder and President",
-          "date": "2003 - 2009",
-          "duties": [
-              "Co-founded Myspace, one of the first major social networking sites.",
-              "Led the company to rapid growth and widespread popularity.",
-              "Oversaw product development and user engagement strategies.",
-              "Facilitated partnerships with artists and influencers."
-          ]
-      },
-      "rocketfrog": {
-          "company": "RocketFrog Interactive",
-          "location": "Los Angeles, CA",
-          "title": "Advisor",
-          "date": "2012",
-          "duties": [
-              "Advised on social media strategies for a Facebook gaming application.",
-              "Provided insights on user engagement and product development."
-          ]
+        "company": "Myspace",
+        "location": "Los Angeles, CA",
+        "title": "Co-founder and President",
+        "date": "2003 - 2009",
+        "duties": [
+          "Co-founded Myspace, one of the first major social networking sites.",
+          "Led the company to rapid growth and widespread popularity.",
+          "Oversaw product development and user engagement strategies.",
+          "Facilitated partnerships with artists and influencers."
+        ]
       },
       "photography": {
-          "company": "Self-employed",
-          "location": "Various locations worldwide",
-          "title": "Photographer",
-          "date": "2011 - Present",
-          "duties": [
-              "Traveling globally to capture landscape and cultural photography.",
-              "Building a portfolio and sharing work on social media platforms.",
-              "Engaging with the photography community and followers."
-          ]
+        "company": "Self-employed",
+        "location": "Various locations worldwide",
+        "title": "Photographer",
+        "date": "2011 - Present",
+        "duties": [
+          "Traveling globally to capture landscape and cultural photography.",
+          "Building a portfolio and sharing work on social media platforms.",
+          "Engaging with the photography community and followers."
+        ]
       }
-  },
-  "common_certifications": [],
-  "common_skills": [
-      "Social Media Strategy",
-      "Product Development",
-      "Digital Marketing",
-      "Photography",
-      "Public Speaking",
-      "Entrepreneurship",
-      "User Engagement",
-      "Community Building"
-  ],
-  "all_projects": {
+    },
+    "common_certifications": [],
+    "common_skills": {
+      "Social Media": [
+        "Social Media Strategy",
+        "User Engagement",
+        "Community Building",
+        "Social Networking"
+      ],
+      "Product Management": [
+        "Product Development",
+        "Project Management",
+        "Product Strategy"
+      ],
+      "Marketing": [
+        "Digital Marketing",
+        "Email Marketing",
+        "Online Advertising"
+      ],
+      "Communication": [
+        "Public Speaking",
+        "Copywriting",
+        "Content Creation"
+      ],
+      "Creative Arts": [
+        "Photography",
+        "Film Studies",
+        "Creative Direction"
+      ],
+      "Entrepreneurship": [
+        "Entrepreneurship",
+        "Business Development",
+        "Startup Leadership"
+      ],
+      "Technical Skills": [
+        "Technical Troubleshooting",
+        "Systems Analysis",
+        "Mechanical Aptitude"
+      ],
+      "Leadership": [
+        "Team Leadership",
+        "Strategic Planning",
+        "Decision Making"
+      ],
+      "Customer Service": [
+        "Client Relations",
+        "Customer Support",
+        "Feedback Management"
+      ]
+    },
+    "all_projects": {
       "myspace_launch": {
-          "name": "Launch of Myspace",
-          "date": "2003",
-          "description": "Co-founded and launched Myspace, a pioneering social networking platform that quickly gained millions of users worldwide.",
-          "link": "https://www.myspace.com"
+        "name": "Launch of Myspace",
+        "date": "2003",
+        "description": "Co-founded and launched Myspace, a pioneering social networking platform that quickly gained millions of users worldwide.",
+        "link": "https://www.myspace.com"
       },
       "myspace_music": {
-          "name": "Development of Myspace Music",
-          "date": "2005",
-          "description": "Expanded Myspace's platform to include Myspace Music, allowing artists to share music and connect with fans.",
-          "link": "https://www.myspace.com/music"
+        "name": "Development of Myspace Music",
+        "date": "2005",
+        "description": "Expanded Myspace's platform to include Myspace Music, allowing artists to share music and connect with fans.",
+        "link": "https://www.myspace.com/music"
       },
-      "rocketfrog_advisory": {
-          "name": "Advisory Role at RocketFrog Interactive",
-          "date": "2012",
-          "description": "Joined RocketFrog Interactive as an advisor to provide expertise in social media and user engagement for their Facebook gaming application.",
-          "link": "http://rocketfroggame.com"
+      "myspace_infrastructure_upgrade": {
+        "name": "Myspace Infrastructure Upgrade",
+        "date": "2007",
+        "description": "Led a project to upgrade the server infrastructure, improving performance and scalability."
+      },
+      "underwater_photography_exhibit": {
+        "name": "Underwater Photography Exhibit",
+        "date": "2015",
+        "description": "Organized an exhibit showcasing underwater photography, promoting marine conservation."
       },
       "photography_portfolio": {
-          "name": "Landscape and Cultural Photography",
-          "date": "2011 - Present",
-          "description": "Pursued passion in photography, traveling globally to capture diverse landscapes and cultures, sharing work on social media.",
-          "link": "https://www.instagram.com/myspacetom"
+        "name": "Landscape and Cultural Photography",
+        "date": "2011 - Present",
+        "description": "Pursued passion in photography, traveling globally to capture diverse landscapes and cultures, sharing work on social media.",
+        "link": "https://www.instagram.com/myspacetom"
       }
-  },
-  "education": [
+    },
+    "education": [
       {
-          "degree": "Bachelor of Arts in English and Rhetoric",
-          "institution": "University of California, Berkeley",
-          "location": "Berkeley, CA",
-          "date": "Graduated 1998",
-          "details": []
+        "degree": "Bachelor of Arts in English and Rhetoric",
+        "institution": "University of California, Berkeley",
+        "location": "Berkeley, CA",
+        "date": "Graduated 1998",
+        "details": []
       },
       {
-          "degree": "Graduate Studies in Film",
-          "institution": "University of California, Los Angeles",
-          "location": "Los Angeles, CA",
-          "date": "2002",
-          "details": []
+        "degree": "Graduate Studies in Film",
+        "institution": "University of California, Los Angeles",
+        "location": "Los Angeles, CA",
+        "date": "2002",
+        "details": []
       }
-  ]
-}
+    ]
+  }
+  
