@@ -107,30 +107,34 @@ def create_resume(data, timestamp=None):
     # Core Competencies
     story.append(Paragraph("Core Competencies", styles['SectionTitle']))
 
-    # Build pairs of skills
-    skills_pairs = []
-    skills = list(set(skills))
-    for i in range(0, len(skills), 2):
-        skill1 = skills[i]
-        if i + 1 < len(skills):
-            skill2 = skills[i + 1]
-        else:
-            skill2 = ''
-        skills_pairs.append((skill1, skill2))
+    # Remove duplicates and sort the skills
+    skills = sorted(set(skills))
 
-    # Build and append each pair of skills as a separate two-cell table
-    for skill1, skill2 in skills_pairs:
-        row = [Paragraph(f"• {skill1}", styles['LeftAlignTwoColList']),
-            Paragraph(f"• {skill2}", styles['LeftAlignTwoColList']) if skill2 else Paragraph('', styles['LeftAlignTwoColList'])]
-        table = Table([row], colWidths=[225, 225])
-        table.setStyle(TableStyle([
-            ('VALIGN', (0, 0), (-1, -1), 'TOP'),
-            ('LEFTPADDING', (0, 0), (-1, -1), 0),
-            ('RIGHTPADDING', (0, 0), (-1, -1), 0),
-            ('TOPPADDING', (0, 0), (-1, -1), 0),
-            ('BOTTOMPADDING', (0, 0), (-1, -1), 0),
-        ]))
-        story.append(table)
+    # Split the skills into two columns
+    half = (len(skills) + 1) // 2  # Round up for odd numbers
+    left_skills = skills[:half]
+    right_skills = skills[half:]
+
+    # Build rows for the table
+    rows = []
+    max_len = max(len(left_skills), len(right_skills))
+    for i in range(max_len):
+        left_skill = left_skills[i] if i < len(left_skills) else ''
+        right_skill = right_skills[i] if i < len(right_skills) else ''
+        row = [Paragraph(f"• {left_skill}", styles['LeftAlignTwoColList']) if left_skill else Paragraph('', styles['LeftAlignTwoColList']),
+               Paragraph(f"• {right_skill}", styles['LeftAlignTwoColList']) if right_skill else Paragraph('', styles['LeftAlignTwoColList'])]
+        rows.append(row)
+
+    # Build and append the table
+    table = Table(rows, colWidths=[225, 225])
+    table.setStyle(TableStyle([
+        ('VALIGN', (0, 0), (-1, -1), 'TOP'),
+        ('LEFTPADDING', (0, 0), (-1, -1), 0),
+        ('RIGHTPADDING', (0, 0), (-1, -1), 0),
+        ('TOPPADDING', (0, 0), (-1, -1), 0),
+        ('BOTTOMPADDING', (0, 0), (-1, -1), 0),
+    ]))
+    story.append(table)
 
     story.append(Spacer(1, SECTION_GAP))
 
@@ -140,9 +144,8 @@ def create_resume(data, timestamp=None):
 
         for job in content:
             # Job header
-            story.append(Paragraph(f"<b>{job['title']}</b>", styles['JobTitle']))
+            story.append(Paragraph(f"<b>{job['title']}</b> at {job['company']}", styles['JobTitle']))
             story.append(Paragraph(f"{job['date']} | {job['location']}", styles['JobDetails']))
-
             # Duties
             for duty in job['duties']:
                 indented_duty = f"{'&nbsp;' * INDENTATION_LEVEL}• {duty}"
@@ -170,7 +173,7 @@ def create_resume(data, timestamp=None):
     # Certifications
     if certifications:
         story.append(Paragraph("Certifications", styles['SectionTitle']))
-        cert_list = [ListItem(Paragraph(cert, styles['LeftAlign'])) for cert in certifications]
+        cert_list = [ListItem(Paragraph(cert, styles['LeftAlign'])) for cert in sorted(set(certifications))]
         story.append(ListFlowable(cert_list, bulletType='bullet'))
         story.append(Spacer(1, SECTION_GAP))
 
